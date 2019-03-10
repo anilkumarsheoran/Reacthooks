@@ -1,6 +1,9 @@
-import React from 'react'
-const initialState = {counter : 0, characters: [] }
+import React,{useReducer} from 'react'
+const initialState = {counter : 0, characters: [], favList: [] }
 
-const store =  React.createContext(initialState);
+// const store = initialState
+// React.createContext(initialState);
+    // const [state,dispatch] = useReducer(Reducer,initialState)
+    // const storeContext = React.createContext({state,dispatch});
 
-export default store
+export default initialState

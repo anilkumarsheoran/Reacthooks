@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
-import CharacterTitle from './CharacterTitle'
+import React, { useEffect, useContext } from 'react'
+import CharacterTile from './CharacterTile'
+import { storeContext } from './App'
 
 const getCharacters= (dispatch) => {
     axios({
@@ -16,12 +17,14 @@ const getCharacters= (dispatch) => {
     })
 }
 
-const Characters = ({ state, dispatch }) => {
+const Characters = () => {
+       const store = useContext(storeContext)
+    const {dispatch, state } = store
     const { characters } = state
     useEffect(()=> {
         getCharacters(dispatch)
     },[])
-    return (<div style={{    display: 'block'}}>{characters.length > 0 && characters.map(character => <CharacterTitle key={character.id}  character={character}/>)}</div>)
+    return (<div style={{    display: 'block'}}>{characters.length > 0 && characters.map(character => <CharacterTile key={character.id}  character={ character } state={state} dispatch={ dispatch }/>)}</div>)
 }
 
 export default Characters
